@@ -6,13 +6,14 @@ from django.contrib.auth.models import BaseUserManager
 
 # Create your models here.
 
+
 class UserProfileManager(BaseUserManager):
     """Manager for userprofiles"""
 
     def create_user(self, email, name, password=None):
         """Create a new user profile"""
         if not email:
-            raise ValueError('Users must hanv an email address')
+            raise ValueError('Users must have an email address')
 
         email = self.normalize_email(email)
         user = self.model(email=email, name=name)
@@ -22,7 +23,7 @@ class UserProfileManager(BaseUserManager):
 
         return user
 
-    def create_super_user(self, email, name, password):
+    def create_superuser(self, email, name, password):
         """Create and save a new super user profile"""
 
         user = self.create_user(email, name, password)
@@ -55,7 +56,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         """Retrieve Short name of the user"""
         return self.name
 
-        def __str__(self):
-            """Return String representation of the user"""
-            return self.email
+    def __str__(self):
+        """Return String representation of the user"""
+        return self.email
         
