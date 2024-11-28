@@ -16,16 +16,19 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/bionic64"
   config.vm.box_version = "~> 20200304.0.0"
-  config.vm.boot_timeout = 600
+  config.vm.boot_timeout = 300
 
   config.vm.network "forwarded_port", guest: 8000, host: 8000
- 
+  
+  config.vm.network "public_network"
+  # config.vm.network "private_network", type: "dhcp"
+  
 
   
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "1024" # or increase as needed
-    vb.cpus = 2
-    # vb.gui = true
+    vb.cpus = 4
+    vb.gui = true
   end
   
 
